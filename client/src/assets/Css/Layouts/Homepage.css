@@ -1,0 +1,21 @@
+.bgimg {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(131, 211, 142, 0.75), rgba(0, 0, 0, 0.75)), url('../../Images/Homepage.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.content {
+    width: 100%;
+    position: absolute;
+    transform: translate(0%, 76%);
+    text-align: center;
+    color: #fff;
+}
+
+.content p {
+    font-weight: 600;
+    color: #fff;
+}
+

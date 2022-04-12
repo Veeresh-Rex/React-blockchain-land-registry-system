@@ -1,0 +1,8 @@
+.bgimgRegister {
+    width: 100%;
+    height: auto;
+    background-image: linear-gradient(rgba(131, 211, 142, 0.75), rgba(0, 0, 0, 0.75)), url('../../Images/Login.jpg');
+    background-size: cover;
+    background-position: center;
+
+}
