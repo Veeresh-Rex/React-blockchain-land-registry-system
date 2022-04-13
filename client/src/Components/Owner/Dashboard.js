@@ -2,6 +2,7 @@ import { FiCheck } from 'react-icons/fi';
 export default function Dashboard(props) {
      return (
           <>
+
                <div className="container">
                     <div className="is-size-3 has-text-centered is-capitalized has-text-weight-bold">
                          Add Land Inspector
