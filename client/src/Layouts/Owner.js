@@ -20,10 +20,10 @@ export default function Inspector(props) {
                setContract(web3Api.contracts);
           });
      }, []);
-     const [screen, setScreen] = useState('Dashboard');
+     const [screen, setScreen] = useState('Add Inspector');
 
      const loadScreen = () => {
-          if (screen === 'Dashboard') {
+          if (screen === 'Add Inspector') {
                return (
                     <Dashboard
                          account={account}
@@ -31,7 +31,7 @@ export default function Inspector(props) {
                          web3={web3}
                     />
                );
-          } else if (screen === 'Add Inspector') {
+          } else if (screen === 'All Inspector') {
                return (
                     <AddInspector
                          account={account}

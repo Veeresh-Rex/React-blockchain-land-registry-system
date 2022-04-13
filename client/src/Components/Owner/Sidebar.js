@@ -1,27 +1,23 @@
-import { FaHome, FaUser } from 'react-icons/fa';
+import { FaUserTie, FaUserPlus } from 'react-icons/fa';
 import { useState } from 'react';
-import { MdMessage } from 'react-icons/md';
+import { MdLogout } from 'react-icons/md';
 import { BiAnalyse } from 'react-icons/bi';
 const routes = [
      {
-          path: '/owner/dashboard',
-          name: 'Dashboard',
-          icon: <FaHome />,
-     },
-     {
-          path: '/owner/add-inspector',
           name: 'Add Inspector',
-          icon: <FaUser />,
+          icon: <FaUserPlus />,
      },
      {
-          path: '/owner/change-owner',
+          name: 'All Inspector',
+          icon: <FaUserTie />,
+     },
+     {
           name: 'Change Owner',
-          icon: <MdMessage />,
+          icon: <BiAnalyse />,
      },
      {
-          path: '/logout',
           name: 'logout',
-          icon: <BiAnalyse />,
+          icon: <MdLogout />,
      },
 ];
 
@@ -32,10 +28,9 @@ const Sidebar = ({ children, setScreen }) => {
                <div className="main-container">
                     <div className="sidebar">
                          <div className="top_section">
-                              <div>
-                                   <div className="logo">
-                                        Blockchain Land Registry System
-                                   </div>
+                              <div className="logo_text is-size-5 has-text-centered">
+                                   <div>Blockchain</div>
+                                   <div>land registry system</div>
                               </div>
                          </div>
                          <section className="routes">
@@ -66,7 +61,7 @@ const Sidebar = ({ children, setScreen }) => {
                          </section>
                     </div>
 
-                    <main>{children}</main>
+                    <main className="sidebar_main">{children}</main>
                </div>
           </>
      );
