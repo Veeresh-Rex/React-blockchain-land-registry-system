@@ -13,7 +13,7 @@ main {
 }
 
 .title {
-     font-size: 3rem;
+     font-size: 2rem;
      display: grid;
      place-items: center;
 }
@@ -29,13 +29,19 @@ main {
 .top_section {
      display: flex;
      align-items: center;
-     justify-content: space-between;
+     justify-content: center;
+     height: 100px;
      padding: 15px 10px;
 }
+.sidebar_main{
+     width: 80vw;
+     float: left;
+}
 
-.logo {
+.logo_text {
      font-size: 18px;
-     line-height: 0;
+     font-weight: bold;
+     color: white;
 }
 
 .routes {

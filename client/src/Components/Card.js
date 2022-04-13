@@ -9,7 +9,7 @@ export default function Card(props) {
                          {props.name}
                     </div>
                     <div class="field columns is-centered mt-1 mb-1">
-                         <button class="button is-primary is-light ">
+                         <button class="button is-primary is-outlined">
                               Continue
                          </button>
                     </div>
