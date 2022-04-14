@@ -3,10 +3,10 @@ import { useLocation } from 'react-router-dom';
 import { LoadContracts } from '../services/LoadContract';
 
 import '../assets/Css/Layouts/Owner.css';
-import AddInspector from '../Components/Owner/AddInspector';
+import AllInspector from '../Components/Owner/AllInspector';
 import ChangeOwner from '../Components/Owner/ChangeOwner';
 import Sidebar from '../Components/Owner/Sidebar';
-import Dashboard from '../Components/Owner/Dashboard';
+import AddInspector from '../Components/Owner/AddInspector';
 
 export default function Inspector(props) {
      const history = useLocation();
@@ -25,7 +25,7 @@ export default function Inspector(props) {
      const loadScreen = () => {
           if (screen === 'Add Inspector') {
                return (
-                    <Dashboard
+                    <AddInspector
                          account={account}
                          contract={contract}
                          web3={web3}
@@ -33,9 +33,9 @@ export default function Inspector(props) {
                );
           } else if (screen === 'All Inspector') {
                return (
-                    <AddInspector
+                    <AllInspector
                          account={account}
-                         contracts={contract}
+                         contract={contract}
                          web3={web3}
                     />
                );
@@ -43,7 +43,7 @@ export default function Inspector(props) {
                return (
                     <ChangeOwner
                          account={account}
-                         contracts={contract}
+                         contract={contract}
                          web3={web3}
                     />
                );

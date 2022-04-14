@@ -1,9 +1,11 @@
 import '../assets/Css/Layouts/Homepage.css';
 import Card from '../Components/Card';
 import { Link } from 'react-router-dom';
-import contract_owner from '../assets/Images/contract_owner_icon.jpg';
-import inspector from '../assets/Images/land_ins_icon.jpg';
-import user_img from '../assets/Images/user_icon.png';
+import contract_owner from '../assets/Images/contract.svg';
+import inspector from '../assets/Images/inspector.png';
+import user_img from '../assets/Images/User.png';
+
+
 function Homepage() {
      return (
           <>

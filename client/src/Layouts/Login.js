@@ -6,19 +6,21 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { loadContract } from '../Utils/load-contract';
 
+
 export default function Login() {
      const navigate = useNavigate();
      const location = useLocation();
+     const [account, setAccount] = useState(null);
 
      const [web3Api, setWeb3Api] = useState({
           provider: null,
           web3: null,
           contract: null,
      });
+
      useEffect(() => {
           if (location.state === null) navigate('/');
      }, [navigate, location.state]);
-     const [account, setAccount] = useState(null);
      // const [balance, setBalance] = useState(null);
      const setAccountListener = (provider) => {
           provider.on('accountsChanged', (accounts) => {
