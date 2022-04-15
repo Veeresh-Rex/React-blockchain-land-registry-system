@@ -1,10 +1,64 @@
+import { useState, useEffect } from 'react';
 import { FiCheck } from 'react-icons/fi';
-
+import { contractAddress } from '../../Utils/constant';
 
 export default function AddInspector(props) {
+     //    fetch contract abi from public contract land folder
+
+     const { account, contract, web3, provider } = props;
+     //  console.log(web3.eth.getBalance(account));
+     const [abi, setAbi] = useState(null);
+     const [contactList, setContactList] = useState();
+     useEffect(() => {
+          setAbi(contract.abi);
+          if (abi) {
+               const contractList = new web3.eth.Contract(abi, contractAddress);
+               setContactList(contractList);
+          }
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+     }, [abi]);
+     const [formValues, setFormValues] = useState({
+          address: '',
+          name: '',
+          age: '',
+          city: '',
+          designation: '',
+     });
+     const handleFormSubmit = async (e) => {
+          e.preventDefault();
+          const { address, name, age, city, designation } = formValues;
+          contactList &&
+               (await provider
+                    .request({
+                         method: 'eth_sendTransaction',
+                         params: [
+                              {
+                                   from: account,
+                                   to: contractAddress,
+                                   data: contactList.methods
+                                        .addLandInspector(
+                                             address,
+                                             name,
+                                             age,
+                                             designation,
+                                             city
+                                        )
+                                        .encodeABI(),
+                              },
+                         ],
+                    })
+                    .then((txHash) => {
+                         console.log(txHash);
+                    }));
+     };
+
+     const handleOnChange = (e) => {
+          const { name, value } = e.target;
+          setFormValues({ ...formValues, [name]: value });
+     };
+
      return (
           <>
-
                <div className="container">
                     <div className="is-size-3 has-text-centered is-capitalized has-text-weight-bold">
                          Add Land Inspector
@@ -14,10 +68,13 @@ export default function AddInspector(props) {
                               <label class="label">Address</label>
                               <div class="control">
                                    <input
-                                        class="input "
+                                        class="input"
                                         type="email"
                                         placeholder="e.g. 0x8392d8f9c8f9c8f9c8f9c8f9c8f9c8f9c8f9c8f"
                                         required
+                                        name="address"
+                                        value={formValues.address}
+                                        onChange={handleOnChange}
                                    />
                               </div>
                          </div>
@@ -25,10 +82,13 @@ export default function AddInspector(props) {
                               <label class="label">Full Name</label>
                               <div class="control">
                                    <input
-                                        class="input "
+                                        class="input"
                                         type="text"
                                         placeholder="e.g. John Doe"
                                         required
+                                        name="name"
+                                        value={formValues.name}
+                                        onChange={handleOnChange}
                                    />
                               </div>
                          </div>
@@ -36,10 +96,13 @@ export default function AddInspector(props) {
                               <label class="label">Age </label>
                               <div class="control">
                                    <input
-                                        class="input "
-                                        type="text"
+                                        class="input"
+                                        type="number"
                                         placeholder="e.g. 30"
                                         required
+                                        name="age"
+                                        value={formValues.age}
+                                        onChange={handleOnChange}
                                    />
                               </div>
                          </div>
@@ -47,26 +110,35 @@ export default function AddInspector(props) {
                               <label class="label">Designation</label>
                               <div class="control">
                                    <input
-                                        class="input "
+                                        class="input"
                                         type="text"
                                         placeholder="e.g. Land Inspector"
                                         required
+                                        name="designation"
+                                        value={formValues.designation}
+                                        onChange={handleOnChange}
                                    />
                               </div>
                               <div class="field">
                                    <label class="label">City</label>
                                    <div class="control">
                                         <input
-                                             class="input "
+                                             class="input"
                                              type="text"
                                              placeholder="e.g. Mumbai"
                                              required
+                                             name="city"
+                                             value={formValues.city}
+                                             onChange={handleOnChange}
                                         />
                                    </div>
                               </div>
                          </div>
                          <div className="columns is-centered mt-2 mb-2">
-                              <button class="button is-medium is-success is-outlined is-rounded is-responsive">
+                              <button
+                                   type="submit"
+                                   class="button is-medium is-success is-outlined is-rounded is-responsive"
+                                   onClick={handleFormSubmit}>
                                    <span>
                                         <FiCheck
                                              size={30}
