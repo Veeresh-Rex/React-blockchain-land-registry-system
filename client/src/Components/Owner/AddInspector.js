@@ -1,22 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
 import { contractAddress } from '../../Utils/constant';
 
 export default function AddInspector(props) {
      //    fetch contract abi from public contract land folder
 
-     const { account, contract, web3, provider } = props;
-     //  console.log(web3.eth.getBalance(account));
-     const [abi, setAbi] = useState(null);
-     const [contactList, setContactList] = useState();
-     useEffect(() => {
-          setAbi(contract.abi);
-          if (abi) {
-               const contractList = new web3.eth.Contract(abi, contractAddress);
-               setContactList(contractList);
-          }
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-     }, [abi]);
+     const { account, contract, provider } = props;
      const [formValues, setFormValues] = useState({
           address: '',
           name: '',
@@ -27,7 +16,8 @@ export default function AddInspector(props) {
      const handleFormSubmit = async (e) => {
           e.preventDefault();
           const { address, name, age, city, designation } = formValues;
-          contactList &&
+
+          contract &&
                (await provider
                     .request({
                          method: 'eth_sendTransaction',
@@ -35,7 +25,7 @@ export default function AddInspector(props) {
                               {
                                    from: account,
                                    to: contractAddress,
-                                   data: contactList.methods
+                                   data: contract.methods
                                         .addLandInspector(
                                              address,
                                              name,

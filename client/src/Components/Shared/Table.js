@@ -21,7 +21,13 @@ export default function Table(props) {
                                         <td>{body.designation}</td>
                                         <td>{body.city}</td>
                                         <td>
-                                             <button className="button is-small is-responsive is-outlined is-danger">
+                                             <button
+                                                  className="button is-small is-responsive is-outlined is-danger"
+                                                  onClick={() => {
+                                                       props.setDeleteIns(
+                                                            body.address
+                                                       );
+                                                  }}>
                                                   remove
                                              </button>
                                         </td>

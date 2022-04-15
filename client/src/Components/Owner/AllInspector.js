@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 export default function AllInspector(props) {
      const { contract } = props;
      const [allInspectors, setAllInspectors] = useState([]);
+     const [deleteIns, setDeleteIns] = useState(null);
      const tableHead = [
           'S.No.',
           'Address',
@@ -16,40 +17,63 @@ export default function AllInspector(props) {
      const mapAllInspectors = useCallback(
           (result) => {
                result.map(async (inspector, index) => {
-                    await contract.InspectorMapping(inspector).then((res) => {
-                         const a = {
-                              sno: index + 1,
-                              address: res._addr,
-                              age: res.age.words[0],
-                              city: res.city,
-                              designation: res.designation,
-                              name: res.name,
-                         };
-                         setAllInspectors((allInspectors) => [
-                              ...allInspectors,
-                              a,
-                         ]);
-                    });
+                    await contract.methods
+                         .InspectorMapping(inspector)
+                         .call()
+                         .then((res) => {
+                              const a = {
+                                   sno: index + 1,
+                                   address: res._addr,
+                                   age: res.age,
+                                   city: res.city,
+                                   designation: res.designation,
+                                   name: res.name,
+                              };
+                              setAllInspectors((allInspectors) => [
+                                   ...allInspectors,
+                                   a,
+                              ]);
+                         });
                });
           },
           [contract]
      );
 
      const getAllInspectorList = useCallback(async () => {
-          await contract.ReturnAllLandIncpectorList().then((result) => {
-               mapAllInspectors(result);
-          });
+          await contract.methods
+               .ReturnAllLandIncpectorList()
+               .call()
+               .then((result) => {
+                    mapAllInspectors(result);
+               });
      }, [contract, mapAllInspectors]);
 
      useEffect(() => {
-          getAllInspectorList();
+          !deleteIns && getAllInspectorList();
+
+          if (deleteIns) {
+               contract.methods
+                    .removeLandInspector(deleteIns)
+                    .send({ from: props.account })
+                    .then((res) => {
+                         console.log(res);
+                         setDeleteIns(null);
+                         getAllInspectorList();
+                    });
+          }
           // eslint-disable-next-line react-hooks/exhaustive-deps
-     }, []);
+     }, [deleteIns]);
 
      return (
           <>
                <div className="title"> All Inspectors</div>
-               <Table tableHead={tableHead} tableBody={allInspectors} />
+               {allInspectors && (
+                    <Table
+                         tableHead={tableHead}
+                         tableBody={allInspectors}
+                         setDeleteIns={setDeleteIns}
+                    />
+               )}
           </>
      );
 }
