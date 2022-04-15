@@ -137,7 +137,7 @@ export default function Login() {
                               </div>
                               <div className="columns is-centered mt-4">
                                    <button
-                                        class="button is-warning "
+                                        class="button is-warning"
                                         onClick={onLoign}>
                                         Connect
                                    </button>

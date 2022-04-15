@@ -1,0 +1,2 @@
+https://eth.wiki/json-rpc/API#eth_sendtransaction
+https://dev.to/xamhans/how-to-create-a-dapp-with-react-solidity-on-ethereum-blockchain-1gg0

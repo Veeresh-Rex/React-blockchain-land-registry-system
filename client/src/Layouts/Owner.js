@@ -13,10 +13,12 @@ export default function Inspector(props) {
      const { account } = history.state;
      const [web3, setWeb3] = useState(null);
      const [contract, setContract] = useState(null);
+     const [provider, setProvider] = useState(null);
 
      useEffect(() => {
           LoadContracts().then((web3Api) => {
                setWeb3(web3Api.web3);
+               setProvider(web3Api.provider);
                setContract(web3Api.contracts);
           });
      }, []);
@@ -29,6 +31,7 @@ export default function Inspector(props) {
                          account={account}
                          contract={contract}
                          web3={web3}
+                         provider={provider}
                     />
                );
           } else if (screen === 'All Inspector') {
@@ -52,7 +55,9 @@ export default function Inspector(props) {
 
      return (
           <>
-               <Sidebar children={loadScreen()} setScreen={setScreen} />
+               {web3 && (
+                    <Sidebar children={loadScreen()} setScreen={setScreen} />
+               )}
           </>
      );
 }

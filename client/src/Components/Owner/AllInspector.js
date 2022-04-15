@@ -5,7 +5,7 @@ export default function AllInspector(props) {
      const [allInspectors, setAllInspectors] = useState([]);
      const tableHead = [
           'S.No.',
-          ' Address',
+          'Address',
           'Name',
           'Age',
           'Designation',
@@ -13,15 +13,38 @@ export default function AllInspector(props) {
           'Action',
      ];
 
+     const mapAllInspectors = useCallback(
+          (result) => {
+               result.map(async (inspector, index) => {
+                    await contract.InspectorMapping(inspector).then((res) => {
+                         const a = {
+                              sno: index + 1,
+                              address: res._addr,
+                              age: res.age.words[0],
+                              city: res.city,
+                              designation: res.designation,
+                              name: res.name,
+                         };
+                         setAllInspectors((allInspectors) => [
+                              ...allInspectors,
+                              a,
+                         ]);
+                    });
+               });
+          },
+          [contract]
+     );
+
      const getAllInspectorList = useCallback(async () => {
           await contract.ReturnAllLandIncpectorList().then((result) => {
-               setAllInspectors(result);
+               mapAllInspectors(result);
           });
-     }, [contract]);
+     }, [contract, mapAllInspectors]);
 
      useEffect(() => {
           getAllInspectorList();
-     }, [getAllInspectorList]);
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+     }, []);
 
      return (
           <>
