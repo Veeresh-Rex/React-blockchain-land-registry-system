@@ -68,6 +68,7 @@ export default function Login() {
                     await web3Api.contract
                          .isUserRegistered(account)
                          .then((isUser) => {
+                              console.log(isUser);
                               if (isUser) {
                                    navigate('/user', {
                                         state: {
@@ -75,7 +76,12 @@ export default function Login() {
                                         },
                                    });
                               } else {
-                                   navigate('/register');
+                                   // TODO: Add a page to register user
+                                   navigate('/user', {
+                                        state: {
+                                             account: account,
+                                        },
+                                   });
                               }
                          });
                     break;
@@ -146,9 +152,9 @@ export default function Login() {
                                         class="button is-warning"
                                         onClick={onLoign}>
                                         <span>Connect</span>
-                                        <spna className="icon">
+                                        <span className="icon">
                                              <GrConnect />
-                                        </spna>
+                                        </span>
                                    </button>
                               </div>
                          </div>

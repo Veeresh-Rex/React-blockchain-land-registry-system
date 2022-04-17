@@ -1,12 +1,11 @@
 import './App.css';
 import Homepage from './Layouts/Homepage';
-import Register from './Layouts/Register.Layout';
+import Register from './Layouts/Register';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Layouts/Login';
 import Owner from './Layouts/Owner';
 import Inspector from './Layouts/Inspector';
 import User from './Layouts/User';
-
 
 function App() {
      return (
