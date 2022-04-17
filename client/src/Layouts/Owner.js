@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { LoadContracts } from '../services/LoadContract';
 import { contractAddress } from '../Utils/constant';
 
@@ -9,10 +9,10 @@ import AllInspector from '../Components/Owner/AllInspector';
 import ChangeOwner from '../Components/Owner/ChangeOwner';
 import Sidebar from '../Components/Owner/Sidebar';
 import AddInspector from '../Components/Owner/AddInspector';
+import Logout from '../Components/Owner/Logout';
 
 export default function Inspector(props) {
      const location = useLocation();
-     const navigate = useNavigate();
      const { account } = location.state;
      const [web3, setWeb3] = useState(null);
      const [contract, setContract] = useState(null);
@@ -63,7 +63,7 @@ export default function Inspector(props) {
                     />
                );
           } else if (screen === 'logout') {
-               navigate('/');
+               return <Logout />;
           }
      };
 

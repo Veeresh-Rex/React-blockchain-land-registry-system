@@ -1,5 +1,4 @@
 export default function ChangeOwner(props) {
-     console.log(props.contract);
      return (
           <>
                <div className="title"> Change Owner</div>
