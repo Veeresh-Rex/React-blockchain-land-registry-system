@@ -1,4 +1,4 @@
-import Table from '../Shared/Table';
+import { Table } from '../Shared';
 import { useCallback, useEffect, useState } from 'react';
 export function AllInspectors(props) {
      const { contract } = props;
@@ -20,15 +20,26 @@ export function AllInspectors(props) {
                     await contract.methods
                          .InspectorMapping(inspector)
                          .call()
-                         .then((res) => {
-                              const a = {
-                                   sno: index + 1,
-                                   address: res._addr,
-                                   age: res.age,
-                                   city: res.city,
-                                   designation: res.designation,
-                                   name: res.name,
-                              };
+                         .then((body) => {
+                              const a = (
+                                   <tr key={index}>
+                                        <th>{index + 1}</th>
+                                        <td>{body._addr}</td>
+                                        <td>{body.name}</td>
+                                        <td>{body.age}</td>
+                                        <td>{body.designation}</td>
+                                        <td>{body.city}</td>
+                                        <td>
+                                             <button
+                                                  className="button is-small is-responsive is-outlined is-danger"
+                                                  onClick={() => {
+                                                       setDeleteIns(body._addr);
+                                                  }}>
+                                                  remove
+                                             </button>
+                                        </td>
+                                   </tr>
+                              );
                               setAllInspectors((allInspectors) => [
                                    ...allInspectors,
                                    a,
@@ -36,7 +47,7 @@ export function AllInspectors(props) {
                          });
                });
           },
-          [contract]
+          [contract.methods]
      );
 
      const getAllInspectorList = useCallback(async () => {
@@ -67,13 +78,11 @@ export function AllInspectors(props) {
      return (
           <>
                <div className="title"> All Inspectors</div>
-               {allInspectors && (
-                    <Table
-                         tableHead={tableHead}
-                         tableBody={allInspectors}
-                         setDeleteIns={setDeleteIns}
-                    />
-               )}
+               <Table
+                    tableHead={tableHead}
+                    tableBody={allInspectors}
+                    setDeleteIns={setDeleteIns}
+               />
           </>
      );
 }

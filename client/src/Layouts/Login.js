@@ -3,7 +3,8 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import Web3 from 'web3';
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import { MdLogin } from 'react-icons/md';
+import { GrConnect } from 'react-icons/gr';
 import { loadContract } from '../Utils/load-contract';
 
 export default function Login() {
@@ -130,7 +131,10 @@ export default function Login() {
                               </div>
                               <div className="columns is-centered mt-5">
                                    <button class="button is-warning">
-                                        Login
+                                        <span>Login</span>
+                                        <span class="icon">
+                                             <MdLogin />
+                                        </span>
                                    </button>
                               </div>
                               <div className="columns is-centered mt-3 has-text-centered">
@@ -141,7 +145,10 @@ export default function Login() {
                                    <button
                                         class="button is-warning"
                                         onClick={onLoign}>
-                                        Connect
+                                        <span>Connect</span>
+                                        <spna className="icon">
+                                             <GrConnect />
+                                        </spna>
                                    </button>
                               </div>
                          </div>

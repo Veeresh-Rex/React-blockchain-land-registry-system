@@ -117,8 +117,8 @@ export default function Inspector(props) {
                          </div>
                     </div>
                ) : (
-                    <Sidebar setScreen={setScreen}>
-                         {loadScreen()} routes={routes}
+                    <Sidebar setScreen={setScreen} routes={routes}>
+                         {loadScreen()}
                     </Sidebar>
                )}
           </>

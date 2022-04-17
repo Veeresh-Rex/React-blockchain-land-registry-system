@@ -1,5 +1,5 @@
 import '../assets/Css/Layouts/Homepage.css';
-import { Card } from '../Components/Shared/Card';
+import { Card } from '../Components/Shared';
 import { Link } from 'react-router-dom';
 import contract_owner from '../assets/Images/contract.svg';
 import inspector from '../assets/Images/inspector.png';
