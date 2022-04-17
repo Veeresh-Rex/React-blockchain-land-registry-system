@@ -1,5 +1,6 @@
 import { Table } from '../Shared';
 import { useCallback, useEffect, useState } from 'react';
+import { MdDeleteForever } from 'react-icons/md';
 export function AllInspectors(props) {
      const { contract } = props;
      const [allInspectors, setAllInspectors] = useState([]);
@@ -31,11 +32,14 @@ export function AllInspectors(props) {
                                         <td>{body.city}</td>
                                         <td>
                                              <button
-                                                  className="button is-small is-responsive is-outlined is-danger"
+                                                  className="button is-responsive is-outlined is-danger"
                                                   onClick={() => {
                                                        setDeleteIns(body._addr);
                                                   }}>
-                                                  remove
+                                                  <span>Delete</span>
+                                                  <span className="icon">
+                                                       <MdDeleteForever />
+                                                  </span>
                                              </button>
                                         </td>
                                    </tr>
