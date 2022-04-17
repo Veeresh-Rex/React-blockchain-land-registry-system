@@ -1,4 +1,4 @@
-export default function ChangeOwner(props) {
+export function ChangeOwner(props) {
      return (
           <>
                <div className="title"> Change Owner</div>

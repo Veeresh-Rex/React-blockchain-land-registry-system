@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
 import { contractAddress } from '../../Utils/constant';
 
-export default function AddInspector(props) {
+export function AddInspector(props) {
      //    fetch contract abi from public contract land folder
 
      const { account, contract, provider } = props;

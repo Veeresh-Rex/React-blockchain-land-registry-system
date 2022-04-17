@@ -1,4 +1,6 @@
-export default function Table(props) {
+import React from 'react';
+
+export function Table(props) {
      const { tableHead, tableBody } = props;
      return (
           <>
@@ -13,25 +15,9 @@ export default function Table(props) {
                     <tbody>
                          {tableBody.map((body, index) => {
                               return (
-                                   <tr key={index}>
-                                        <th>{body.sno}</th>
-                                        <td>{body.address}</td>
-                                        <td>{body.name}</td>
-                                        <td>{body.age}</td>
-                                        <td>{body.designation}</td>
-                                        <td>{body.city}</td>
-                                        <td>
-                                             <button
-                                                  className="button is-small is-responsive is-outlined is-danger"
-                                                  onClick={() => {
-                                                       props.setDeleteIns(
-                                                            body.address
-                                                       );
-                                                  }}>
-                                                  remove
-                                             </button>
-                                        </td>
-                                   </tr>
+                                   <React.Fragment key={index}>
+                                        {body}
+                                   </React.Fragment>
                               );
                          })}
                     </tbody>

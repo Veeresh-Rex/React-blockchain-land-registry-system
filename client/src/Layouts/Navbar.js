@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
      return (
@@ -8,7 +9,7 @@ export const Navbar = () => {
                          Blockchain Land registry
                     </a>
 
-                    <a
+                    <Link
                          role="button"
                          class="navbar-burger"
                          aria-label="menu"
@@ -17,12 +18,12 @@ export const Navbar = () => {
                          <span aria-hidden="true"></span>
                          <span aria-hidden="true"></span>
                          <span aria-hidden="true"></span>
-                    </a>
+                    </Link>
                </div>
 
                <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-start">
-                         <a class="navbar-item">Home</a>
+                         <Link class="navbar-item">Home</Link>
                     </div>
                </div>
           </nav>

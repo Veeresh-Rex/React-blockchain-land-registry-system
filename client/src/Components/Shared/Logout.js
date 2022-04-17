@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Logout() {
+function Logout() {
      const navigate = useNavigate();
      const [onCancel, setOnCancel] = useState(false);
      return (
@@ -35,3 +35,5 @@ export default function Logout() {
           </>
      );
 }
+
+export { Logout };
