@@ -1,6 +1,6 @@
 import Table from '../Shared/Table';
 import { useCallback, useEffect, useState } from 'react';
-export default function AllInspector(props) {
+export function AllInspectors(props) {
      const { contract } = props;
      const [allInspectors, setAllInspectors] = useState([]);
      const [deleteIns, setDeleteIns] = useState(null);

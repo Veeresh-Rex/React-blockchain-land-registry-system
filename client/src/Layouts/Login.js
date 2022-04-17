@@ -6,7 +6,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { loadContract } from '../Utils/load-contract';
 
-
 export default function Login() {
      const navigate = useNavigate();
      const location = useLocation();
@@ -59,6 +58,9 @@ export default function Login() {
                               } else {
                                    console.log('This is not an inspector');
                               }
+                         })
+                         .catch((err) => {
+                              console.log(err);
                          });
                     break;
                case 'User':

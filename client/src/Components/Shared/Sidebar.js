@@ -1,27 +1,6 @@
-import { FaUserTie, FaUserPlus } from 'react-icons/fa';
 import { useState } from 'react';
-import { MdLogout } from 'react-icons/md';
-import { BiAnalyse } from 'react-icons/bi';
-const routes = [
-     {
-          name: 'Add Inspector',
-          icon: <FaUserPlus />,
-     },
-     {
-          name: 'All Inspector',
-          icon: <FaUserTie />,
-     },
-     {
-          name: 'Change Owner',
-          icon: <BiAnalyse />,
-     },
-     {
-          name: 'logout',
-          icon: <MdLogout />,
-     },
-];
 
-const Sidebar = ({ children, setScreen }) => {
+const Sidebar = ({ children, setScreen, routes }) => {
      const [active, setActive] = useState(routes[0].name);
      return (
           <>
@@ -67,5 +46,4 @@ const Sidebar = ({ children, setScreen }) => {
      );
 };
 
-export default Sidebar;
-     
+export { Sidebar };

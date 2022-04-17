@@ -1,10 +1,9 @@
 import '../assets/Css/Layouts/Homepage.css';
-import Card from '../Components/Card';
+import { Card } from '../Components/Shared/Card';
 import { Link } from 'react-router-dom';
 import contract_owner from '../assets/Images/contract.svg';
 import inspector from '../assets/Images/inspector.png';
 import user_img from '../assets/Images/User.png';
-
 
 function Homepage() {
      return (

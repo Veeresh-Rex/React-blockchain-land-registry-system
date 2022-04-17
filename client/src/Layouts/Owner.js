@@ -3,13 +3,31 @@ import { useLocation } from 'react-router-dom';
 import { LoadContracts } from '../services/LoadContract';
 import { contractAddress } from '../Utils/constant';
 
-import '../assets/Css/Layouts/Owner.css';
 import '../assets/Css/loading.css';
-import AllInspector from '../Components/Owner/AllInspector';
-import ChangeOwner from '../Components/Owner/ChangeOwner';
-import Sidebar from '../Components/Owner/Sidebar';
-import AddInspector from '../Components/Owner/AddInspector';
-import Logout from '../Components/Owner/Logout';
+import { AddInspector, ChangeOwner, AllInspectors } from '../Components/Owner';
+import { Logout, Sidebar } from '../Components/Shared';
+import { FaUserTie, FaUserPlus } from 'react-icons/fa';
+import { MdLogout } from 'react-icons/md';
+import { BiAnalyse } from 'react-icons/bi';
+
+const routes = [
+     {
+          name: 'Add Inspector',
+          icon: <FaUserPlus />,
+     },
+     {
+          name: 'All Inspector',
+          icon: <FaUserTie />,
+     },
+     {
+          name: 'Change Owner',
+          icon: <BiAnalyse />,
+     },
+     {
+          name: 'logout',
+          icon: <MdLogout />,
+     },
+];
 
 export default function Inspector(props) {
      const location = useLocation();
@@ -25,12 +43,12 @@ export default function Inspector(props) {
                setWeb3(web3Api.web3);
                setProvider(web3Api.provider);
                if (web3Api.web3) {
-                    const contractLis = new web3Api.web3.eth.Contract(
+                    const contractList = new web3Api.web3.eth.Contract(
                          web3Api.contracts.abi,
                          contractAddress
                     );
-                    setContract(contractLis);
-                    contractLis && setIsloading(false);
+                    setContract(contractList);
+                    contractList && setIsloading(false);
                }
           });
 
@@ -38,32 +56,42 @@ export default function Inspector(props) {
      }, []);
 
      const loadScreen = () => {
-          if (screen === 'Add Inspector') {
-               return (
-                    <AddInspector
-                         account={account}
-                         contract={contract}
-                         provider={provider}
-                    />
-               );
-          } else if (screen === 'All Inspector') {
-               return (
-                    <AllInspector
-                         account={account}
-                         contract={contract}
-                         web3={web3}
-                    />
-               );
-          } else if (screen === 'Change Owner') {
-               return (
-                    <ChangeOwner
-                         account={account}
-                         contract={contract}
-                         web3={web3}
-                    />
-               );
-          } else if (screen === 'logout') {
-               return <Logout />;
+          switch (screen) {
+               case 'Add Inspector':
+                    return (
+                         <AddInspector
+                              account={account}
+                              contract={contract}
+                              provider={provider}
+                         />
+                    );
+               case 'All Inspector':
+                    return (
+                         <AllInspectors
+                              account={account}
+                              contract={contract}
+                              web3={web3}
+                         />
+                    );
+               case 'Change Owner':
+                    return (
+                         <ChangeOwner
+                              account={account}
+                              contract={contract}
+                              web3={web3}
+                              provider={provider}
+                         />
+                    );
+               case 'logout':
+                    return <Logout />;
+               default:
+                    return (
+                         <AddInspector
+                              account={account}
+                              contract={contract}
+                              provider={provider}
+                         />
+                    );
           }
      };
 
@@ -89,7 +117,9 @@ export default function Inspector(props) {
                          </div>
                     </div>
                ) : (
-                    <Sidebar children={loadScreen()} setScreen={setScreen} />
+                    <Sidebar setScreen={setScreen}>
+                         {loadScreen()} routes={routes}
+                    </Sidebar>
                )}
           </>
      );
