@@ -52,6 +52,7 @@ function Register() {
           const url = `https://ipfs.infura.io/ipfs/${added.path}`;
           setFormValues({ ...formValues, document: url });
           const { name, age, email, location, aadhar, pan } = formValues;
+          console.log(formValues);
           contract &&
                (await provider
                     .request({
@@ -67,7 +68,7 @@ function Register() {
                                              location,
                                              aadhar,
                                              pan,
-                                             document,
+                                             url,
                                              email
                                         )
                                         .encodeABI(),
