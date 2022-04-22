@@ -1,6 +1,12 @@
 import { FaUserTie, FaAddressCard } from 'react-icons/fa';
 import { IoIdCard } from 'react-icons/io5';
-import { MdEmail, MdLocationOn, MdVerified } from 'react-icons/md';
+import {
+     MdEmail,
+     MdLocationOn,
+     MdVerified,
+     MdAccountBalanceWallet,
+     GoUnverified, // TODO: GoUnverified icon for user not verified
+} from 'react-icons/md';
 import { RiUserSettingsFill } from 'react-icons/ri';
 
 export function Dashboard() {
@@ -19,6 +25,22 @@ export function Dashboard() {
                                         style={{ color: 'green' }}
                                    />
                               </div>
+
+                              <div class="field">
+                                   <label class="label">Wallet Address</label>
+                                   <div class="control has-icons-left ">
+                                        <input
+                                             class="input "
+                                             type="text"
+                                             readonly
+                                             value="0x50a8acFaC7CB27b133746F4d6E25CB5F8894c675"
+                                        />
+                                        <span class="icon is-small is-left">
+                                             <MdAccountBalanceWallet />
+                                        </span>
+                                   </div>
+                              </div>
+
                               <div class="field">
                                    <label class="label">Full Name</label>
                                    <div class="control has-icons-left ">

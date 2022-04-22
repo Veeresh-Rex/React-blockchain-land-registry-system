@@ -77,7 +77,7 @@ export default function Login() {
                                    });
                               } else {
                                    // TODO: Add a page to register user
-                                   navigate('/user', {
+                                   navigate('/register', {
                                         state: {
                                              account: account,
                                         },

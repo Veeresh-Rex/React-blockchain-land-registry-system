@@ -2,7 +2,24 @@ import { FaUserTie, FaAddressCard } from 'react-icons/fa';
 import { IoIdCard } from 'react-icons/io5';
 import { MdEmail, MdLocationOn, MdUploadFile } from 'react-icons/md';
 import { RiUserSettingsFill } from 'react-icons/ri';
-function Register() {
+
+function Register({
+     formValues,
+     setFormValues,
+     setFileData,
+     handleSubmit,
+     fileData,
+     isloading,
+     isDisable,
+}) {
+     const handleOnChange = (e) => {
+          const { name, value } = e.target;
+          setFormValues({ ...formValues, [name]: value });
+          if (e.target?.files) {
+               setFileData(e.target?.files[0]);
+          }
+     };
+
      return (
           <>
                <form>
@@ -13,6 +30,10 @@ function Register() {
                                    class="input"
                                    type="text"
                                    placeholder="Alex Smith"
+                                   name="name"
+                                   onChange={handleOnChange}
+                                   value={formValues.name}
+                                   disabled={isDisable}
                               />
                               <span class="icon is-small is-left">
                                    <FaUserTie />
@@ -26,6 +47,9 @@ function Register() {
                                    class="input"
                                    type="text"
                                    placeholder="e.g. 22"
+                                   name="age"
+                                   onChange={handleOnChange}
+                                   disabled={isDisable}
                               />
                               <span class="icon is-small is-left">
                                    <RiUserSettingsFill />
@@ -39,6 +63,9 @@ function Register() {
                                    class="input"
                                    type="email"
                                    placeholder="e.g. alexsmith@gmail.com"
+                                   name="email"
+                                   onChange={handleOnChange}
+                                   disabled={isDisable}
                               />
                               <span class="icon is-small is-left">
                                    <MdEmail />
@@ -53,6 +80,9 @@ function Register() {
                                    class="input"
                                    type="text"
                                    placeholder="e.g. Mahatma Gandhi Road, Lucknow,Uttar Pradesh"
+                                   name="location"
+                                   onChange={handleOnChange}
+                                   disabled={isDisable}
                               />
                               <span class="icon is-small is-left">
                                    <MdLocationOn />
@@ -66,6 +96,9 @@ function Register() {
                                    class="input"
                                    type="tel"
                                    placeholder="e.g. 123456789000"
+                                   name="aadhar"
+                                   onChange={handleOnChange}
+                                   disabled={isDisable}
                               />
                               <span class="icon is-small is-left">
                                    <FaAddressCard />
@@ -79,6 +112,9 @@ function Register() {
                                    class="input"
                                    type="text"
                                    placeholder="e.g. PAN1234567"
+                                   name="pan"
+                                   onChange={handleOnChange}
+                                   disabled={isDisable}
                               />
                               <span class="icon is-small is-left">
                                    <IoIdCard />
@@ -95,6 +131,8 @@ function Register() {
                                         class="file-input"
                                         type="file"
                                         name="document"
+                                        onChange={handleOnChange}
+                                        required
                                    />
                                    <span class="file-cta">
                                         <span class="file-icon">
@@ -105,13 +143,17 @@ function Register() {
                                         </span>
                                    </span>
                                    <span class="file-name">
-                                        {/* TODO: code for file name */}
+                                        {fileData?.name}
                                    </span>
                               </label>
                          </div>
                     </div>
                     <p class="control">
-                         <button className="button is-success">Submit</button>
+                         <button
+                              className={`button is-success`+ (isloading ? ' is-loading' : '')}
+                              onClick={handleSubmit}>
+                              Submit
+                         </button>
                     </p>
                </form>
           </>
