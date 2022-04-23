@@ -68,7 +68,6 @@ export default function Login() {
                     await web3Api.contract
                          .isUserRegistered(account)
                          .then((isUser) => {
-                              console.log(isUser);
                               if (isUser) {
                                    navigate('/user', {
                                         state: {

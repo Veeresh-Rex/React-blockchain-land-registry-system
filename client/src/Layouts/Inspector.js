@@ -45,8 +45,6 @@ const routes = [
 export default function Inspector() {
      const history = useLocation();
      const { account } = history.state;
-     const location = useLocation();
-     const [web3, setWeb3] = useState(null);
      const [contract, setContract] = useState(null);
      // const [isloading, setIsloading] = useState(true);
      const [provider, setProvider] = useState(null);
@@ -54,7 +52,6 @@ export default function Inspector() {
 
      useEffect(() => {
           LoadContracts().then((web3Api) => {
-               setWeb3(web3Api.web3);
                setProvider(web3Api.provider);
                if (web3Api.web3) {
                     const contractList = new web3Api.web3.eth.Contract(
@@ -105,11 +102,13 @@ export default function Inspector() {
      };
      return (
           <>
-               <Sidebar
-                    children={loadscreen()}
-                    routes={routes}
-                    setScreen={setScreen}
-               />
+               {contract && (
+                    <Sidebar
+                         children={loadscreen()}
+                         routes={routes}
+                         setScreen={setScreen}
+                    />
+               )}
           </>
      );
 }

@@ -10,7 +10,6 @@ import {
 import { GoUnverified } from 'react-icons/go';
 import { RiUserSettingsFill } from 'react-icons/ri';
 import { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 
 export function Dashboard(props) {
      const { account, contract } = props;
@@ -115,7 +114,7 @@ export function Dashboard(props) {
 
                                    <div class="field">
                                         <label class="label">
-                                             Full Location{' '}
+                                             Full Location
                                         </label>
                                         <div class="control has-icons-left">
                                              <input
