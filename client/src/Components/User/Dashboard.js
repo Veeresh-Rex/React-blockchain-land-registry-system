@@ -114,7 +114,7 @@ export function Dashboard(props) {
 
                                    <div class="field">
                                         <label class="label">
-                                             Full Location{' '}
+                                             Full Location
                                         </label>
                                         <div class="control has-icons-left">
                                              <input

@@ -71,9 +71,8 @@ export function AllInspectors(props) {
                     .removeLandInspector(deleteIns)
                     .send({ from: props.account })
                     .then((res) => {
-                         console.log(res);
+                         setAllInspectors([]);
                          setDeleteIns(null);
-                         getAllInspectorList();
                     });
           }
           // eslint-disable-next-line react-hooks/exhaustive-deps
