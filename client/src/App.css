@@ -76,3 +76,8 @@ main {
      white-space: nowrap;
      font-size: 15px;
 }
+
+.notification-height{
+     height: 150px;
+     cursor: pointer;
+}
