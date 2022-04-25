@@ -69,7 +69,7 @@ export default function Inspector() {
      const loadscreen = () => {
           switch (screen) {
                case 'Dashboard':
-                    return <Dashboard account={account} />;
+                    return <Dashboard account={account} contract={contract} />;
                case 'Verify user':
                     return (
                          <VerifyUser
