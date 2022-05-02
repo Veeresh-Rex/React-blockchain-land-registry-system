@@ -11,6 +11,7 @@ export default function Login() {
      const navigate = useNavigate();
      const location = useLocation();
      const [account, setAccount] = useState(null);
+     const [isLoginError, setLoginError] = useState(false);
 
      const [web3Api, setWeb3Api] = useState({
           provider: null,
@@ -29,6 +30,21 @@ export default function Login() {
           setAccount(provider.selectedAddress);
      };
 
+     const NotificationError = () => {
+          return (
+               <>
+                    <div class="notification is-danger is-light">
+                         <button
+                              class="delete"
+                              onClick={() => {
+                                   setLoginError(false);
+                              }}></button>
+                         This account is not a {location.state.loginAs}
+                    </div>
+               </>
+          );
+     };
+
      const LoginRedirect = useCallback(async () => {
           switch (location.state.loginAs) {
                case 'Owner':
@@ -42,7 +58,7 @@ export default function Login() {
                                         },
                                    });
                               } else {
-                                   console.log('This is not an owner');
+                                   setLoginError(true);
                               }
                          });
                     break;
@@ -57,7 +73,7 @@ export default function Login() {
                                         },
                                    });
                               } else {
-                                   console.log('This is not an inspector');
+                                   setLoginError(true);
                               }
                          })
                          .catch((err) => {
@@ -126,7 +142,7 @@ export default function Login() {
                               <div className="image is-5by3">
                                    <img src={Login_img} alt="Login" />
                               </div>
-                              {account}
+                              {isLoginError && <NotificationError />}
                               <div>
                                    <input
                                         className="input is-link mt-3"
